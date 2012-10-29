@@ -53,6 +53,15 @@ class ContentTest extends PHPUnit_Framework_TestCase {
 		$expected = 'aaabbbccc';
 		$this->assertEquals($expected, $output);
 	}
+	public function test_two_br() {
+		$input = "aa\n\nbb";
+		$this->content->set_content($input);
+		$output = $this->content->get_no_image_content();
+		$expected = 'aa<br />
+<br />
+bb';
+		$this->assertEquals($expected, $output);
+	}
 	public function width() {
 		return array(
 			// input, width, expected 
