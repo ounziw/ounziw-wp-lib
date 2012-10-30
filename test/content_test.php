@@ -39,14 +39,21 @@ class ContentTest extends PHPUnit_Framework_TestCase {
 		$expected = 'abc.png';
 		$this->assertEquals($expected, $output);
 	}
-	public function test_no_first_image() {
-		$input = 'aaa<img src="abc.png">bbb<img src="def.jpg">ccc';
+	public function test_noimage() {
+		$input = 'aaabbbccc';
+		$this->content->set_content($input);
+		$output = $this->content->get_first_image();
+		$expected = '';
+		$this->assertEquals($expected, $output);
+	}
+	public function test_get_no_first_image() {
+		$input = 'aaa<img src="abc.png" alt="abc">bbb<img src="def.jpg">ccc';
 		$this->content->set_content($input);
 		$output = $this->content->get_no_first_image_content();
 		$expected = 'aaabbb<img src="def.jpg">ccc';
 		$this->assertEquals($expected, $output);
 	}
-	public function test_no_image_content() {
+	public function test_get_no_image_content() {
 		$input = 'aaa<img src="abc.png">bbb<img src="def.jpg">ccc';
 		$this->content->set_content($input);
 		$output = $this->content->get_no_image_content();
@@ -124,3 +131,4 @@ bb';
 		$this->assertEquals($expected, $output);
 	}
 }
+
