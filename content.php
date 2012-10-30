@@ -1,9 +1,5 @@
 <?php
-/*
- * GPL ver.2
- * GCopyright 2012 by Fumito MIZUNO http://php-web.net/
- * Ghttp://www.gnu.org/licenses/gpl-2.0.html
- */
+
 class Content {
 	protected $content;
 	protected $image;
@@ -33,7 +29,8 @@ class Content {
 	function _get_excerpt_mbstrimwidth($length=110,$moretext="...") {
 		$length = intval($length);
 		$moretext = strip_tags($moretext);
-		$outdata = mb_strimwidth(strip_shortcodes(strip_tags(($this->content))),0,$length,$moretext,"UTF-8");
+		$content = strip_shortcodes(strip_tags($this->content));
+		$outdata = mb_strimwidth($content,0,$length,$moretext,"UTF-8");
 		$outdata = htmlspecialchars($outdata,ENT_QUOTES,"UTF-8");
 		return $outdata;
 	}
